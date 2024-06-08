@@ -1,0 +1,25 @@
+body {
+    color: azure;
+    background-color: black;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+h1 {
+    margin: 15px;
+    text-decoration-line: underline;
+    text-decoration-style: dashed;
+}
+
+button {
+    margin-bottom: 15px;
+}
+
+#title-button {
+    text-align: center;
+}
+
+.mainContainer {
+    display: flex;
+    justify-content: center;
+}
+
