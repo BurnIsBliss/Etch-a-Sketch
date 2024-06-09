@@ -1,14 +1,20 @@
 const mainContainer = document.querySelector(".mainContainer");
 
+function colorTheGrid(){
+    // Logic to change the backgroundColor of the grid
+    const changeColorList = document.querySelectorAll(".innerSquare");
+    changeColorList.forEach((element) => element.addEventListener("mouseover", (e) => {e.target.style.backgroundColor = "yellow"; console.log(e.target);}));
+}
 
 // Function to change the grid size
 function gridLayout(squares=30){
     for (let i=0; i<squares; i++){
         const innerDiv = document.createElement("div");
         innerDiv.classList.add("squareList");
-        innerDiv.setAttribute("style", "display: flex; flex: 1; flex-direction: column;")
+        innerDiv.setAttribute("style", "display: flex; flex: 1; flex-direction: column;");
         for (let j=0; j<squares; j++){
             const squareDiv = document.createElement("div");
+            squareDiv.classList.add("innerSquare");
             squareDiv.setAttribute("style","background-color: white; border: 1px solid black; flex: 1");
             innerDiv.appendChild(squareDiv);
         }
@@ -16,11 +22,10 @@ function gridLayout(squares=30){
     }
 }
 
-
 // Function to add functionality to the 'Change Grid Layout Button', we have implemented a function to remove the already existing child elements of the .mainContainer
 const changeGrid = document.querySelector("button");
 changeGrid.addEventListener("click", () => {
-    const gridValue = prompt("Please enter a valid Grid size between 1 - 100"); 
+    const gridValue = prompt("Please enter a valid Grid size between 1 - 100");
     console.log(typeof(gridValue));
     if ((gridValue > 100) || (gridValue < 1) || (typeof(parseInt(gridValue)) !== "number")) {
         alert("Please enter a valid number and try again.");
@@ -30,8 +35,9 @@ changeGrid.addEventListener("click", () => {
     console.log(delSquares);
     delSquares.forEach((node) => {node.remove();})
     gridLayout(gridValue);
+    colorTheGrid();
 })
 
-
-// Initial call to set the grid size
+// Initial call to set the grid size and color the grid
 gridLayout();
+colorTheGrid();
