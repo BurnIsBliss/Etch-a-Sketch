@@ -1,25 +1,38 @@
 const mainContainer = document.querySelector(".mainContainer");
 
+// Function to create random RGB values
+function generateRGB (){
+    let colorR = Math.floor(Math.random()*255);
+    let colorG = Math.floor(Math.random()*255);
+    let colorB = Math.floor(Math.random()*255);
+    
+    return (`${colorR},${colorG},${colorB}`);
+}
+
 function colorTheGrid(){
     // Logic to change the backgroundColor of the grid
     const changeColorList = document.querySelectorAll(".innerSquare");
-    changeColorList.forEach((element) => element.addEventListener("mouseover", (e) => {e.target.style.backgroundColor = "yellow";
+    changeColorList.forEach((element) => element.addEventListener("mouseover", (e) => {if (e.target.className!="innerSquare colorAdded") {
+    e.target.style.backgroundColor = "rgb(" + generateRGB() + ")";
+    e.target.classList.add("colorAdded");
+    console.log("Class value set", e.target.className);
+    }
     // console.log(e.target);
     // The below code sets the opacity of the elements and decrements accordingly 
     if (!e.target.style.opacity) {
     e.target.style.opacity = 1; 
-    console.log("initialize",e.target.style.opacity);
+    // console.log("initialize",e.target.style.opacity);
     }
     else {
     e.target.style.opacity = incrementOpacity(e.target.style.opacity);
-    console.log("decrement",e.target.style.opacity);
+    // console.log("decrement",e.target.style.opacity);
     }
 }));
 }
 
 // function to decrement the opacity of the grid divS
 function incrementOpacity(currentOpacity){
-    console.log("inside incrementOpacity", currentOpacity);
+    // console.log("inside incrementOpacity", currentOpacity);
     if(currentOpacity > 0) currentOpacity -= .1;
     return currentOpacity;
 }
