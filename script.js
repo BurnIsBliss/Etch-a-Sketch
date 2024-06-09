@@ -2,13 +2,14 @@ const mainContainer = document.querySelector(".mainContainer");
 
 
 // Function to change the grid size
-function gridLayout(squares=5){
+function gridLayout(squares=30){
     for (let i=0; i<squares; i++){
         const innerDiv = document.createElement("div");
         innerDiv.classList.add("squareList");
+        innerDiv.setAttribute("style", "display: flex; flex: 1; flex-direction: column;")
         for (let j=0; j<squares; j++){
             const squareDiv = document.createElement("div");
-            squareDiv.setAttribute("style","height: 16px; width: 16px; background-color: white; border: 2px solid grey");
+            squareDiv.setAttribute("style","background-color: white; border: 1px solid black; flex: 1");
             innerDiv.appendChild(squareDiv);
         }
         mainContainer.appendChild(innerDiv);
@@ -19,7 +20,12 @@ function gridLayout(squares=5){
 // Function to add functionality to the 'Change Grid Layout Button', we have implemented a function to remove the already existing child elements of the .mainContainer
 const changeGrid = document.querySelector("button");
 changeGrid.addEventListener("click", () => {
-    const gridValue = prompt("Please enter a valid Grid size between 1 - 100", 5); 
+    const gridValue = prompt("Please enter a valid Grid size between 1 - 100"); 
+    console.log(typeof(gridValue));
+    if ((gridValue > 100) || (gridValue < 1) || (typeof(parseInt(gridValue)) !== "number")) {
+        alert("Please enter a valid number and try again.");
+        return 0;
+    }
     const delSquares = document.querySelectorAll(".squareList");
     console.log(delSquares);
     delSquares.forEach((node) => {node.remove();})

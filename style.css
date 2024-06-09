@@ -20,6 +20,8 @@ button {
 
 .mainContainer {
     display: flex;
-    justify-content: center;
+    height: 680px;
+    width: 680px;
+    margin: auto;
 }
 
