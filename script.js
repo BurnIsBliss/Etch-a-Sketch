@@ -3,8 +3,27 @@ const mainContainer = document.querySelector(".mainContainer");
 function colorTheGrid(){
     // Logic to change the backgroundColor of the grid
     const changeColorList = document.querySelectorAll(".innerSquare");
-    changeColorList.forEach((element) => element.addEventListener("mouseover", (e) => {e.target.style.backgroundColor = "yellow"; console.log(e.target);}));
+    changeColorList.forEach((element) => element.addEventListener("mouseover", (e) => {e.target.style.backgroundColor = "yellow";
+    // console.log(e.target);
+    // The below code sets the opacity of the elements and decrements accordingly 
+    if (!e.target.style.opacity) {
+    e.target.style.opacity = 1; 
+    console.log("initialize",e.target.style.opacity);
+    }
+    else {
+    e.target.style.opacity = incrementOpacity(e.target.style.opacity);
+    console.log("decrement",e.target.style.opacity);
+    }
+}));
 }
+
+// function to decrement the opacity of the grid divS
+function incrementOpacity(currentOpacity){
+    console.log("inside incrementOpacity", currentOpacity);
+    if(currentOpacity > 0) currentOpacity -= .1;
+    return currentOpacity;
+}
+
 
 // Function to change the grid size
 function gridLayout(squares=30){
@@ -22,7 +41,7 @@ function gridLayout(squares=30){
     }
 }
 
-// Function to add functionality to the 'Change Grid Layout Button', we have implemented a function to remove the already existing child elements of the .mainContainer
+// Code to layout the functionality of the 'Change Grid Layout' button, we have implemented a function to remove the already existing child elements of the .mainContainer
 const changeGrid = document.querySelector("button");
 changeGrid.addEventListener("click", () => {
     const gridValue = prompt("Please enter a valid Grid size between 1 - 100");
