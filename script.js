@@ -2,9 +2,9 @@ const mainContainer = document.querySelector(".mainContainer");
 
 // Function to create random RGB values
 function generateRGB (){
-    let colorR = Math.floor(Math.random()*255);
-    let colorG = Math.floor(Math.random()*255);
-    let colorB = Math.floor(Math.random()*255);
+    let colorR = Math.floor(Math.random()*256);
+    let colorG = Math.floor(Math.random()*256);
+    let colorB = Math.floor(Math.random()*256);
     
     return (`${colorR},${colorG},${colorB}`);
 }
